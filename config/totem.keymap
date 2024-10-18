@@ -24,10 +24,10 @@
 #define TVP2 5
 
 &mt {
-    quick-tap-ms = <100>;
+    quick-tap-ms = <130>;
     global-quick-tap;
     flavor = "tap-preferred";
-    tapping-term-ms = <170>;
+    tapping-term-ms = <200>;
 };
 
 / {
@@ -121,7 +121,7 @@
             bindings = <
         &kp ESC    &bt BT_CLR  &kp UP    &kp EQUAL  &kp DE_LEFT_BRACE          &kp DE_RIGHT_BRACE        &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_PLUS
         &kp LSHFT  &kp LEFT    &kp DOWN  &kp RIGHT  &kp DE_LEFT_BRACKET        &kp DE_RIGHT_BRACKET      &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_MINUS
-&trans  &kp DEL    &kp PG_UP   &kp CAPS  &kp PG_DN  &kp DE_LEFT_PARENTHESIS    &kp DE_RIGHT_PARENTHESIS  &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_MULTIPLY  &trans
+&trans  &kp DEL    &kp PG_UP   &kp CAPS  &kp PG_DN  &kp DE_LEFT_PARENTHESIS    &kp DE_RIGHT_PARENTHESIS  &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_MULTIPLY  &kp KP_DIVIDE
                                &trans    &trans     &trans                     &mo ADJ                   &kp KP_N0  &trans
             >;
         };
