@@ -145,8 +145,8 @@
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
-        &kp AT       &kp DE_EXCL    &kp DE_EURO      &kp DE_DOLLAR  &kp DE_PERCENT    &kp CARET     &kp AMPS        &kp RA(U)   &kp SQT     &kp DQT
-        &kp AT       &kp DE_ESZETT  &kp DE_QUESTION  &trans         &trans            &kp C_MUTE    &kp LS(RA(N4))  &kp RA(N5)  &kp RA(N4)  &kp DE_PIPE
+        &kp DE_AT    &kp DE_EXCL    &kp DE_EURO      &kp DE_DOLLAR  &kp DE_PERCENT    &kp CARET     &kp AMPS        &kp RA(U)   &kp SQT     &kp DQT
+        &kp DE_AT    &kp DE_ESZETT  &kp DE_QUESTION  &trans         &trans            &kp C_MUTE    &kp LS(RA(N4))  &kp RA(N5)  &kp RA(N4)  &kp DE_PIPE
 &trans  &kp RA(F18)  &kp RA(F19)    &trans           &trans         &trans            &kp C_VOL_DN  &kp C_VOL_UP    &kp C_PREV  &kp C_NEXT  &kp DE_BACKSLASH  &trans
                                     &trans           &gif           &mo ADJ           &trans        &kp C_PP        &trans
             >;
