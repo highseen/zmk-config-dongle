@@ -179,7 +179,7 @@
 
 /* @ */
 //#define DE_AT_SIGN (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_Q)))
-#define (DE_AT_SIGN ALGR(DE_Q))
+#define DE_AT_SIGN (ALGR(DE_Q))
 #define DE_AT (DE_AT_SIGN)
 
 /* [ */
