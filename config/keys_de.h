@@ -57,6 +57,22 @@
 #include <dt-bindings/zmk/hid_usage_pages.h>
 #include <dt-bindings/zmk/modifiers.h>
 
+/*
+ * German ISO layout helpers for ZMK.
+ *
+ * Base letters, umlauts, digits and shifted punctuation are identical for
+ * German on macOS and Windows/Linux as long as the host keyboard layout is
+ * set to German. The third-level symbols differ:
+ * - Windows/Linux German: Right Alt / AltGr (RA)
+ * - macOS German: Option (LA), following QMK keymap_german_mac_iso.h
+ *
+ * The generic DE_* aliases below default to macOS because this keyboard is
+ * primarily used there. Windows/Linux alternatives are exposed as DE_WIN_*.
+ */
+#ifndef ALGR
+#define ALGR(keycode) RA(keycode)
+#endif
+
 #define DE_ESCAPE_CHARACTER (LC(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_LEFT_BRACKET_AND_LEFT_BRACE)))
 
 #define DE_FILE_SEPARATOR (LC(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_BACKSLASH_AND_PIPE)))
@@ -74,7 +90,7 @@
 #define DE_DQT (DE_DOUBLE_QUOTES)
 
 /* # */
-#define DE_HASH (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_BACKSLASH_AND_PIPE))
+#define DE_HASH (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_HASH_AND_TILDE))
 #define DE_POUND (DE_HASH)
 
 /* $ */
@@ -178,20 +194,27 @@
 #define DE_QMARK (DE_QUESTION)
 
 /* @ */
-//#define DE_AT_SIGN (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_Q)))
-#define DE_AT_SIGN (ALGR(DE_Q))
+#define DE_MAC_AT_SIGN (LA(DE_L))
+#define DE_WIN_AT_SIGN (ALGR(DE_Q))
+#define DE_AT_SIGN (DE_MAC_AT_SIGN)
 #define DE_AT (DE_AT_SIGN)
 
 /* [ */
-#define DE_LEFT_BRACKET (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_8_AND_ASTERISK)))
+#define DE_MAC_LEFT_BRACKET (LA(DE_N5))
+#define DE_WIN_LEFT_BRACKET (ALGR(DE_N8))
+#define DE_LEFT_BRACKET (DE_MAC_LEFT_BRACKET)
 #define DE_LBKT (DE_LEFT_BRACKET)
 
 /* \ */
-#define DE_BACKSLASH (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_MINUS_AND_UNDERSCORE)))
+#define DE_MAC_BACKSLASH (LS(LA(DE_N7)))
+#define DE_WIN_BACKSLASH (ALGR(DE_SHARP_S))
+#define DE_BACKSLASH (DE_MAC_BACKSLASH)
 #define DE_BSLH (DE_BACKSLASH)
 
 /* ] */
-#define DE_RIGHT_BRACKET (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_9_AND_LEFT_PARENTHESIS)))
+#define DE_MAC_RIGHT_BRACKET (LA(DE_N6))
+#define DE_WIN_RIGHT_BRACKET (ALGR(DE_N9))
+#define DE_RIGHT_BRACKET (DE_MAC_RIGHT_BRACKET)
 #define DE_RBKT (DE_RIGHT_BRACKET)
 
 /* ^ */
@@ -283,18 +306,26 @@
 #define DE_Z (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_Y))
 
 /* { */
-#define DE_LEFT_BRACE (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_7_AND_AMPERSAND)))
+#define DE_MAC_LEFT_BRACE (LA(DE_N8))
+#define DE_WIN_LEFT_BRACE (ALGR(DE_N7))
+#define DE_LEFT_BRACE (DE_MAC_LEFT_BRACE)
 #define DE_LBRC (DE_LEFT_BRACE)
 
 /* | */
-#define DE_PIPE (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_BACKSLASH_AND_PIPE)))
+#define DE_MAC_PIPE (LA(DE_N7))
+#define DE_WIN_PIPE (ALGR(DE_LESS_THAN))
+#define DE_PIPE (DE_MAC_PIPE)
 
 /* } */
-#define DE_RIGHT_BRACE (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_0_AND_RIGHT_PARENTHESIS)))
+#define DE_MAC_RIGHT_BRACE (LA(DE_N9))
+#define DE_WIN_RIGHT_BRACE (ALGR(DE_N0))
+#define DE_RIGHT_BRACE (DE_MAC_RIGHT_BRACE)
 #define DE_RBRC (DE_RIGHT_BRACE)
 
 /* ~ */
-#define DE_TILDE (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_BRACE)))
+#define DE_MAC_TILDE (LA(DE_N))
+#define DE_WIN_TILDE (ALGR(DE_PLUS))
+#define DE_TILDE (DE_MAC_TILDE)
 
 /* § */
 #define DE_SECTION (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_3_AND_HASH)))
@@ -339,4 +370,6 @@
 #define DE_U_UMLAUT (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_LEFT_BRACKET_AND_LEFT_BRACE))
 
 /* € */
-#define DE_EURO (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_E)))
+#define DE_MAC_EURO (LA(DE_E))
+#define DE_WIN_EURO (ALGR(DE_E))
+#define DE_EURO (DE_MAC_EURO)

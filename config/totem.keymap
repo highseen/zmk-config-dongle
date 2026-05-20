@@ -23,8 +23,11 @@
 #define NAV  1
 #define SYM  2
 #define ADJ  3
-#define TVP1 4
-#define TVP2 5
+#define TVP1    4
+#define TVP2    5
+#define WIN     6  // Toggle for Windows/Linux German third-level symbols
+#define WIN_NAV 7  // Active automatically when WIN + NAV are on
+#define WIN_SYM 8  // Active automatically when WIN + SYM are on
 
 &mt {
     quick-tap-ms = <130>;
@@ -47,6 +50,20 @@
             timeout-ms = <100>;
             key-positions = <11 12 13>;
             bindings = <&tog TVP1>;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        win_nav_cond {
+            if-layers = <WIN NAV>;
+            then-layer = <WIN_NAV>;
+        };
+
+        win_sym_cond {
+            if-layers = <WIN SYM>;
+            then-layer = <WIN_SYM>;
         };
     };
 
@@ -148,14 +165,44 @@
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
-        &kp DE_AT_SIGN  &kp DE_EXCL    &kp DE_EURO      &kp DE_DOLLAR  &kp DE_PERCENT    &kp CARET     &kp AMPS        &kp RA(U)   &kp SQT     &kp DQT
-        &kp AT          &kp DE_ESZETT  &kp DE_QUESTION  &trans         &trans            &kp C_MUTE    &kp LS(RA(N4))  &kp RA(N5)  &kp RA(N4)  &kp DE_PIPE
-&trans  &kp RA(F18)     &kp RA(F19)    &trans           &trans         &trans            &kp C_VOL_DN  &kp C_VOL_UP    &kp C_PREV  &kp C_NEXT  &kp DE_BACKSLASH  &trans
+        &kp DE_AT_SIGN    &kp DE_EXCL    &kp DE_EURO      &kp DE_DOLLAR  &kp DE_PERCENT    &kp DE_CARET   &kp DE_AMPS      &kp DE_U_UMLAUT  &kp DE_SQT   &kp DE_DQT
+        &kp DE_A_UMLAUT  &kp DE_ESZETT  &kp DE_QUESTION  &trans         &trans            &kp C_MUTE     &kp LS(RA(N4))  &kp RA(N5)      &kp RA(N4)  &kp DE_PIPE
+&trans  &kp RA(F18)       &kp RA(F19)    &trans           &trans         &trans            &kp C_VOL_DN   &kp C_VOL_UP    &kp C_PREV  &kp C_NEXT  &kp DE_BACKSLASH  &trans
                                        &trans           &gif           &mo ADJ           &trans        &kp C_PP        &trans
             >;
         };
 
         // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+        win_layer {
+            label = "WIN";
+            bindings = <
+        &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+        &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans    &trans  &trans  &trans
+            >;
+        };
+
+        win_nav_layer {
+            label = "WIN NAV";
+            bindings = <
+        &trans  &trans  &trans  &trans  &kp DE_WIN_LEFT_BRACE    &kp DE_WIN_RIGHT_BRACE    &trans  &trans  &trans  &trans
+        &trans  &trans  &trans  &trans  &kp DE_WIN_LEFT_BRACKET  &kp DE_WIN_RIGHT_BRACKET  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                   &trans                    &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans                   &trans                    &trans  &trans
+            >;
+        };
+
+        win_sym_layer {
+            label = "WIN SYM";
+            bindings = <
+        &kp DE_WIN_AT_SIGN  &trans  &kp DE_WIN_EURO  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+        &trans              &trans  &trans           &trans  &trans  &trans  &trans  &trans  &trans  &kp DE_WIN_PIPE
+&trans  &trans              &trans  &trans           &trans  &trans  &trans  &trans  &trans  &trans  &kp DE_WIN_BACKSLASH  &trans
+                                &trans           &trans  &trans  &trans  &trans  &trans
+            >;
+        };
 
         adjust_layer {
             // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -174,7 +221,7 @@
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
-        &sys_reset   &bt BT_CLR  &out OUT_TOG  &trans  &trans    &trans  &kp F7  &kp F8  &kp F9  &kp F12
+        &sys_reset   &bt BT_CLR  &out OUT_TOG  &tog WIN  &trans    &trans  &kp F7  &kp F8  &kp F9  &kp F12
         &bootloader  &bt BT_NXT  &trans        &trans  &trans    &trans  &kp F4  &kp F5  &kp F6  &kp F11
 &trans  &trans       &bt BT_PRV  &trans        &trans  &trans    &trans  &kp F1  &kp F2  &kp F3  &kp F10  &trans
                                  &trans        &trans  &trans    &trans  &trans  &trans
